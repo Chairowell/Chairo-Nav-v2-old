@@ -1,0 +1,513 @@
+/* Reset CSS */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, menu, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+main, menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+article, aside, details, figcaption, figure,
+footer, header, hgroup, main, menu, nav, section {
+	display: block;
+}
+*[hidden] {
+    display: none;
+}
+body {
+	line-height: 1;
+}
+menu, ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/* Reset CSS */
+
+
+/* 全局变量 */
+:root{
+    --theme-color: hsl(0, 0%, 36%);
+    --font-color: hsl(0, 0%, 100%);
+	--music-font-color: hsla(0, 0%, 100%, 0.84);
+	--backdrop-brightness: brightness(50%);
+	--screen-max-width: 2048px;
+    /* --background-image: url(./1.png); */
+	--album-cover: url(./music.jpg);
+}
+body{
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	background: var(--theme-color);
+}
+/* 全局变量 */
+
+
+/* 滚动条部分 */
+body::-webkit-scrollbar{
+    /* 滚动条宽高 */
+    width: 11px;
+}
+body::-webkit-scrollbar-thumb{
+    /* 滚动条 */
+    background-color: hsla(0, 0%, 0%, 0.5);
+	border-radius: 1px;
+}
+body::-webkit-scrollbar-track{
+    /* 滚动导轨 */
+	background: var(--theme-color);
+    /* background: #000000e0; */
+	/* background: var(--background-image); */
+}
+
+
+/* 背景部分 */
+#background{
+	z-index: -1;
+	width: 100%;
+	height: 100vh;
+	position: fixed;
+	top: 0;
+	background: no-repeat;
+	background-position: center;
+	-o-background-size: cover;
+	-moz-background-size: cover;
+    -webkit-background-size: cover;
+    background-size: cover;
+	background-image: var(--background-image);
+}
+#bg-cover{
+	width: 100%;
+	height: 100%;
+	/* animation: cover forwards 1.6s; */
+}
+@keyframes cover{
+	from{
+		-webkit-backdrop-filter: blur(0px) brightness(100%);
+		backdrop-filter: blur(0px) brightness(100%);
+	}
+	to{
+		/* 白天夜间不同的brightness值 */
+		-webkit-backdrop-filter: blur(1px) brightness(54%);
+		backdrop-filter: blur(1px) brightness(54%);
+	}
+}
+
+
+/* 导航栏部分 */
+.navigation-bar{
+	z-index: 1;
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+}
+#nav-box{
+	max-width: var(--screen-max-width);
+	height: 54px;
+
+	/* 居中并设置边距48px */
+	width: calc(100% - 48px * 2);
+	margin: 12px auto;
+	/* margin-bottom: 0; */
+
+	border-radius: 6px;
+	-webkit-backdrop-filter: blur(10px) var(--backdrop-brightness);
+	backdrop-filter: blur(10px) var(--backdrop-brightness);
+
+	box-shadow: 0 0 6px 1px hsla(0, 0%, 0%, 0.5);
+
+	position: relative;
+}
+
+/* 音乐部分 */
+#songInfo{
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 1;
+}
+.music-link,#fail{
+	width: 30%;
+	max-width: 600px;
+	margin: 18px auto;
+	padding: 6px 24px;
+	border: 2px solid var(--music-font-color);
+	border-radius: 50px;
+	-webkit-backdrop-filter: blur(60px) var(--backdrop-brightness);
+	backdrop-filter: blur(60px) var(--backdrop-brightness);
+	text-align: center;
+	/* 防御式CSS，防止文本超出边界 */
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	animation: boxshake .3s ease-in;
+}
+#fail{
+	font-size: 14px;
+	color: var(--music-font-color);
+	display: none;
+}
+/* 音乐切换动画 */
+@keyframes boxshake{
+	0%{	
+		transform: rotate(0) translateY(-60px);
+	}
+	20%{
+		transform: rotate(4deg) skew(3deg) ;
+	}
+	40%{
+		transform: rotate(-3deg) skew(-3deg) translateY(3px);
+	}
+	60%{
+		transform: rotate(2deg) skew(1deg);
+	}
+	80%{
+		transform: rotate(-3deg)skew(-1deg);
+	}
+	100%{
+		transform: rotate(0) translateY(0px);
+	}
+}
+.music-link,.music-link a,.music-link span{
+	font-size: 14px;
+	color: var(--music-font-color);
+}
+.music-link span{
+	font-size: 13px;
+	margin-right: 6px;
+}
+/* 专辑部分 */
+.album-box{
+	width: 46px;
+	height: 46px;
+	float: left;
+	margin: 4px;
+	position: relative;
+}
+.album-cover{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	border-radius: 4px;
+	background: no-repeat;
+    background-position: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	background-image: var(--album-cover);
+}
+#play-mode-box{
+	width: 100%;
+	height: 100%;
+	border-radius: 4px;
+	position: absolute;
+}
+#play-mode-box div{
+	font-size: 28px;
+	color: var(--font-color);
+	line-height: 46px;
+	text-align: center;
+}
+/* 播放模式切换部分 */
+.album-cover{
+	/* 添加visibility属性到过渡属性中 */
+	transition: opacity .3s, visibility 0s; 
+    opacity: 1;
+}
+.album-box:hover .album-cover{
+	opacity: 0;
+}
+#play-mode-box{
+	transition: opacity .4s, background-color .15s;
+    opacity: 0;
+}
+.album-box:hover #play-mode-box{
+	opacity: 1;
+}
+#play-mode-box:active{
+	background-color: hsla(0, 0%, 0%, 0.5);
+}
+/* 音乐控制部分 */
+.music-controls{
+	float: left;
+	margin: 4px 0px 4px 6px;
+}
+#volume-bar{
+	width: 12px;
+	height: 44px;
+	float: left;
+	margin: 0px 12px 0px 3px;
+	border: 1px solid hsla(0, 0%, 50%, 0.5);
+	border-radius: 3px;
+	overflow: hidden;
+	transform: rotate(180deg);
+}
+#volume-value{
+	width: 100%;
+	background-color: hsla(122, 39%, 49%, 0.863);
+	transform-origin: bottom;
+	/* 将变换原点设置在底部 */
+	transform: scaleY(1);
+	/* 默认进度为100% */
+}
+#play,#pause,#next{
+	width: 42px;
+	height: 100%;
+	float: left;
+	font-size: 25px;
+	color: var(--font-color);
+	line-height: 46px;
+	text-align: center;
+	transition: color .15s;
+}
+#play{
+	display: block;
+}
+#pause{
+	display: none;
+}
+#play:active,#pause:active,#next:active{
+	color: hsl(0, 0%, 40%);
+}
+.search-box{
+	width: 300px;
+	height: 36px;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	background: #fff;
+}
+.search-content{
+	float: left;
+}
+
+/* 实时时间日期显示部分 */
+.time-box{
+	width: 84px;
+	height: 45px;
+	margin: 4.5px;
+	float: right;
+	text-align: center;
+	border-radius: 4px;
+}
+.time-box div{
+	height: 15px;
+	font-size: 12px;
+	font-weight: 100;
+	color: var(--font-color);
+	line-height: 15px;
+}
+
+
+/* 导航功能页部分 */
+#nav-view{
+	background: #363636;
+}
+
+
+/* 主体部分 */
+#view{
+	z-index: 0;
+	max-width: var(--screen-max-width);
+	margin: 0 auto;
+}
+/* scroll-snap-type */
+/* #view{
+	display: flex;
+	height: 100vh;
+	flex: none;
+  	overflow: auto;
+	scroll-snap-type: y mandatory;
+	flex-flow: column nowrap;
+}
+#view > div{
+	scroll-snap-align: center;
+	line-height: 100vh;
+	flex: none;
+} */
+.welcome{
+	width: 100%;
+	height: 60vh;
+	/* background-color: aqua; */
+}
+.welcome-text{
+	margin-top: 42vh;
+	text-align: center;
+	font-size: 28px;
+	font-weight: 600;
+	letter-spacing: 2px;
+	line-height: 48px;
+	animation: fontcolor infinite 6s ease-in-out;
+	text-shadow: 0px 0px 12px;
+}
+@keyframes fontcolor{
+	0%{
+		color: #000;
+	}
+	50%{
+		color: #fff;
+	}
+	100%{
+		color: #000;
+	}
+}
+#linkbox{
+	/* width: 100%; */
+	/* height: 100vh; */
+	/* height: calc(100% - 100vh); */
+	/* background-color: yellowgreen; */
+	width: 80vw;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+.partition-name{
+    height: 24px;
+    padding-top: 36px;
+    font-size: 18px;
+    font-weight: 800;
+    /*  */
+    color: #fff;
+}
+.partition-box{
+    width: 100%;
+    margin: 12px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+.link-box{
+    width: calc(25% - 40px);
+    height: 48px;
+    margin: 5px;
+    padding: 15px;
+    transition: all 0.2s;
+    opacity: 0.85;
+	text-decoration: none;
+}
+.link-box:hover{
+    opacity: 1;
+    border-radius: 5px;
+    background-color: #ffffff11;
+    transform: translateY(-3px);
+    box-shadow: 0 3px 20px #00000047;
+}
+.link-name{
+    color: #fff;
+    margin: 6px 0 6px 0;
+    font-size: 14px;
+    font-weight: 600;
+}
+.link-explain{
+    width: 100%;
+    height: 24px;
+    color: #fff;
+    font-size: 12px;
+    white-space:normal;
+    line-height: 120%;
+    word-break:break-all;
+    word-wrap:break-word;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.said{
+    margin-top: 60px;
+    text-align: center;
+}
+.said h3{
+    margin: 36px 0 24px 0;
+    font-size: 16px;
+    letter-spacing: 12px;
+    color: #ffffff;
+}
+.said h4{
+    margin: 6px 0 120px 0;
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: #ffffff80;
+}
+.said h5{
+    margin: 6px;
+    font-size: 8px;
+    letter-spacing: 1px;
+    color: #ffffff;
+    text-decoration: overline;
+}
+.said a{
+    font-size: 10px;
+    color: #ffffff;
+    transition: color 0.3s;
+    letter-spacing: 1px;
+}
+.said a:hover{
+    color: #808080;
+    transition: color 0.3s;
+}
+
+@media screen and (max-width: 768px){
+	#nav-box{
+		/* 居中并设置边距12px */
+		width: calc(100% - 12px * 2);
+		margin: 12px auto;
+		/* margin-bottom: 0; */
+	}
+	.music-link,#fail{
+		width: 60%;
+		max-width: 600px;
+	}
+	.welcome-text{
+		font-size: 18px;
+		font-weight: 600;
+		letter-spacing: 0.5px;
+		margin-left: 12px;
+		margin-right: 12px;
+		line-height: 32px;
+		text-shadow: 0px 0px 3px;
+	}
+	.said h3{
+		letter-spacing: 6px;
+	}
+	.link-box{
+        width: calc(100% - 10px);
+    }
+}
+
+@media screen and (max-width: 310px){
+	.welcome-text{
+		font-size: 16px;
+		font-weight: 600;
+		margin-left: 12px;
+		margin-right: 12px;
+		line-height: 24px;
+		text-shadow: 0px 0px 3px;
+	}
+	.said h3{
+		letter-spacing: 3px;
+	}
+}
