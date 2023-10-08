@@ -54,7 +54,7 @@ table {
 	--music-font-color: hsla(0, 0%, 100%, 0.84);
 	--backdrop-brightness: brightness(50%);
 	--screen-max-width: 2048px;
-    /* --background-image: url(./1.png); */
+    --background-image: url(https://api.paugram.com/bing/);
 	--album-cover: url(./music.jpg);
 }
 body{
