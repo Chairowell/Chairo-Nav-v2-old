@@ -425,12 +425,12 @@ function readTextFile(file, callback) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    readTextFile("./poster.json", function (text) {
-        data = JSON.parse(text);
-        let obj = data;
-        let posternum = getRandomNumber(0, obj["poster"].length);
-        document.getElementById("background").style.cssText = '--background-image: url(' + obj["poster"][posternum] + ');';
-    });
+   // readTextFile("./poster.json", function (text) {
+       // data = JSON.parse(text);
+    //    let obj = data;
+   //     let posternum = getRandomNumber(0, obj["poster"].length);
+     //   document.getElementById("background").style.cssText = '--background-image: url(' + obj["poster"][posternum] + ');';
+    // });
 
     readTextFile("./list.json", function (text) {
         data = JSON.parse(text);
