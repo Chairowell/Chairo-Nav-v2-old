@@ -1,5 +1,5 @@
 // 音乐控制参数
-const album_cover_local = "./music.jpg";
+// const album_cover_local = "./favicon.jpg";
 // 定义sid的最小值和最大值
 const minimum = 2;
 const maximum = 43687;
@@ -99,7 +99,8 @@ function getMusicInfoFromBiu(sid) {
 
             // 如果封面链接是 https:\/\/biu.moe\/Public\/img\/biu.png，使用本地图片
             if (coverUrl === "https:\/\/biu.moe\/Public\/img\/biu.png") {
-                coverUrl = album_cover_local;
+                coverUrl = "./favicon.png"
+                // coverUrl = album_cover_local;
             }
 
             // 设置 CSS 的 --album-cover 变量为封面链接
@@ -108,7 +109,7 @@ function getMusicInfoFromBiu(sid) {
             const songDiv = document.createElement("div");
             //是否开启音乐详情链接
             songDiv.innerHTML = `<div class="music-link" style="animation: boxshake .3s ease-in;"><span class="iconfont icon-music"></span>${songName}</div>`;
-            songDiv.innerHTML = `<div class="music-link" style="animation: boxshake .3s ease-in;"><span class="iconfont icon-music"></span><a href="https://biu.moe/#/s${songId}">${songName}</a></div>`;
+            // songDiv.innerHTML = `<div class="music-link" style="animation: boxshake .3s ease-in;"><span class="iconfont icon-music"></span><a href="https://biu.moe/#/s${songId}">${songName}</a></div>`;
 
             // 获取音乐播放器元素
             const musicPlayer = document.getElementById("music");
@@ -140,6 +141,8 @@ function getMusicInfoFromBiu(sid) {
             });
         });
 }
+
+
 
 // 等待页面加载完成
 document.addEventListener('DOMContentLoaded', function () {
@@ -411,6 +414,23 @@ setInterval(updateClock, 1000);
 //     });
 // };
 
+// Ping Url
+function pingURL(obj,url){
+    var urlBox = document.getElementById(obj.id);
+    var urlDate = new Date();
+    var urlTime = urlDate.getMinutes()*60 + urlDate.getSeconds() + urlDate.getMilliseconds()/1000;
+    urlBox.innerHTML = "<img id='"+urlTime+"' src="+url+"/"+Math.random()+" width=0 height=0 onerror='checkTime(this,"+urlTime+")' >Testing...";
+}
+function checkTime(obj,tim){
+    var nowDate = new Date();
+    var timec = (nowDate.getMinutes()*60 + nowDate.getSeconds() + nowDate.getMilliseconds()/1000 - tim).toFixed(2);
+    if(timec>20){
+        document.getElementById(obj.id).parentNode.innerHTML = "<div class='url-R'></div>Timeout";
+    }else{
+        document.getElementById(obj.id).parentNode.innerHTML = "<div class='url-G'></div>"+timec+"s";
+    }
+}
+
 // JSON File Reader
 function readTextFile(file, callback) {
     var rawFile = new XMLHttpRequest();
@@ -425,22 +445,25 @@ function readTextFile(file, callback) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-   readTextFile("./poster.json", function (text) {
-       data = JSON.parse(text);
-       let obj = data;
-       let posternum = getRandomNumber(0, obj["poster"].length);
-       document.getElementById("background").style.cssText = '--background-image: url(' + obj["poster"][posternum] + ');';
-   });
+    readTextFile("./poster.json", function (text) {
+        data = JSON.parse(text);
+        let obj = data;
+        let posternum = getRandomNumber(0, obj["poster"].length);
+        document.getElementById("background").style.cssText = '--background-image: url(' + obj["poster"][posternum] + ');';
+    });
 
     readTextFile("./list.json", function (text) {
         data = JSON.parse(text);
         let obj = data;
+        var urlnum = 0;
         for (i in obj) {
             var link = '';
             for (l in obj[i]) {
-                link = link + '<a class="link-box" href="' + obj[i][l]["url"] + '"><div class="link-name">' + obj[i][l]["name"] + '</div><div class="link-explain">' + obj[i][l]["explain"] + '</div><div class="link-ping" id="' + obj[i][l]["name"] + '"></div></a>';
+                link = link + '<div class="link-box"><a href="' + obj[i][l]["url"] + '"><div class="link-name">' + obj[i][l]["name"] + '</div><div class="link-explain">' + obj[i][l]["explain"] + '</div></a><div class="url-test" id="' + obj[i][l]["name"] + '" onclick="pingURL(this,\'' + obj[i][l]["url"] + '\')"><div class="url-B"></div>点我测试</div></div>';
             }
             document.getElementById("linkbox").innerHTML += '<div class="partition"><div class="partition-name" id="' + i + '">- ' + i + ' -</div><div class="partition-box">' + link + '</div></div>'
+            
         }
     });
+    
 });
