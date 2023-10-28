@@ -185,17 +185,17 @@
         "18": {"name": "ACG艺世界","url": "https://www.acg149.xyz/","explain": "[需魔法] 新的开始"}
     },
     "Games":{
-        "": {"name": "SteamDB","url": "https://steamdb.info/search/","explain": "[英文] 搜索Steam游戏历史价格"},
-        "": {"name": "My galgame","url": "https://www.ttloli.com/","explain": "最大的Galgame攻略+汉化下载"},
-        "": {"name": "Migu云游","url": "https://www.migufun.com/","explain": "当个“云”玩家"},
-        "": {"name": "Watt Toolkit","url": "https://steampp.net/","explain": "原名Steam++ 挂卡、加速、插件工具"},
-        "": {"name": "小黑盒","url": "https://xiaoheihe.cn/games/index","explain": "高能玩家聚集地"},
-        "": {"name": "2DFan","url": "https://2dfan.org/","explain": "专注于提供日本游戏攻略资讯"},
-        "": {"name": "UPUPO","url": "https://www.upupuo.com/","explain": "游戏资讯站"},
-        "": {"name": "FlappyPaimon","url": "https://www.evkworld.net/g/yqi7na","explain": "飞翔的派蒙网页版"},
-        "": {"name": "Epic","url": "https://store.epicgames.com/","explain": "[需魔法] Epic官网"},
-        "": {"name": "Steam","url": "https://store.steampowered.com/","explain": "[需魔法] Steam官网"},
-        "": {"name": "EROLABS","url": "https://zodgame.ero-labs.io/","explain": "[R18][需魔法] 黄油 | H游戏"}
+        "1": {"name": "SteamDB","url": "https://steamdb.info/search/","explain": "[英文] 搜索Steam游戏历史价格"},
+        "2": {"name": "My galgame","url": "https://www.ttloli.com/","explain": "最大的Galgame攻略+汉化下载"},
+        "3": {"name": "Migu云游","url": "https://www.migufun.com/","explain": "当个“云”玩家"},
+        "4": {"name": "Watt Toolkit","url": "https://steampp.net/","explain": "原名Steam++ 挂卡、加速、插件工具"},
+        "5": {"name": "小黑盒","url": "https://xiaoheihe.cn/games/index","explain": "高能玩家聚集地"},
+        "6": {"name": "2DFan","url": "https://2dfan.org/","explain": "专注于提供日本游戏攻略资讯"},
+        "7": {"name": "UPUPO","url": "https://www.upupuo.com/","explain": "游戏资讯站"},
+        "8": {"name": "FlappyPaimon","url": "https://www.evkworld.net/g/yqi7na","explain": "飞翔的派蒙网页版"},
+        "9": {"name": "Epic","url": "https://store.epicgames.com/","explain": "[需魔法] Epic官网"},
+        "10": {"name": "Steam","url": "https://store.steampowered.com/","explain": "[需魔法] Steam官网"},
+        "11": {"name": "EROLABS","url": "https://zodgame.ero-labs.io/","explain": "[R18][需魔法] 黄油 | H游戏"}
     },
     "Shopping & Other":{
         "1": {"name": "米画师","url": "https://www.mihuashi.com/","explain": "美术外包交易平台，自由|高效|专业"},
