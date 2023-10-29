@@ -340,79 +340,6 @@ function updateClock() {
 setInterval(updateClock, 1000);
 
 
-// bilibili搜素 GET返回页面 https://search.bilibili.com/all?keyword=${keyword}
-
-// Bangumi条目搜索 https://bgm.tv/subject_search/${keyword}?cat=${value}
-// Bangumi人物搜索 https://bgm.tv/mono_search/${keyword}?cat=${value}
-// cat值  全部:all & 5 动画:1 书籍:2 音乐:3 游戏:4 三次元:6 | 虚构人物:crt 现实人物:prsn
-
-// 萌娘百科搜索API GET返回JSON https://zh.moegirl.org.cn/api.php?action=opensearch&format=json&search=${keyword}
-// 文档 https://zh.moegirl.org.cn/api.php?action=help&modules=opensearch
-// 维基百科https://www.wikipedia.org/ H萌https://hmoegirl.info/ 使用的是同一方法的api，写一个就通用
-
-// Animenewsnetworks搜素-GET返回页面 https://www.animenewsnetwork.com/search?q=${keyword}
-
-// MyAnimeList搜索 https://myanimelist.net/search/all?q=${keyword}#${value}
-// ${value}值 用于转跳页面的分类 anime manga characters people company
-
-// AniList搜索 https://anilist.co/search/anime?search=${keyword}
-
-// IMDb搜索 https://www.imdb.com/find/?q=${keyword}
-
-// AniDB搜索 https://anidb.net/anime/?adb.search=${keyword}
-
-// 后续加入https://github.com/Dituon/setu-api 对图片的搜索
-
-// function webSearch(keyword,website){
-
-// }
-
-// 当满足特定格式时执行的操作函数
-// function performCustomAction(action, value) {
-//     switch (action) {
-//         case "open":
-//             console.log(`显示值：${value}`);
-//             // 执行显示操作，例如更新页面上的内容
-//             break;
-//         case "close":
-//             switch (value) {
-//                 case "R18":
-//                     console.log(`隐藏值：${value}`);
-//             }
-//             break;
-//         default:
-//             return `${action}:${value}`
-//     }
-// }
-
-// // 在格式不正确时执行的函数
-// function handleInvalidFormat() {
-//     console.log("输入内容格式不正确");
-//     // 执行其他处理，例如显示提示信息
-// }
-
-
-// window.onloadad = function () {
-//     // 获取按钮元素
-//     const searchButton = document.getElementById("search-button");
-//     searchButton.addEventListener("click", function (event) {
-//         event.preventDefault(); // 阻止按钮的默认行为（例如提交表单）
-
-//         const userInput = document.getElementById("search-input").value;
-
-//         // 判断输入内容是否满足特定格式
-//         const regex = /(\w+):(.+)/; // 正则表达式匹配 {操作}:{值} 格式
-//         const match = userInput.match(regex);
-
-//         if (match) {
-//             const action = match[1];
-//             const value = match[2];
-//             performCustomAction(action, value);
-//         } else {
-//             handleInvalidFormat();
-//         }
-//     });
-// };
 
 // Ping Url
 function pingURL(obj,url){
@@ -445,25 +372,57 @@ function readTextFile(file, callback) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    readTextFile("./poster.json", function (text) {
-        data = JSON.parse(text);
-        let obj = data;
-        let posternum = getRandomNumber(0, obj["poster"].length);
-        document.getElementById("background").style.cssText = '--background-image: url(' + obj["poster"][posternum] + ');';
+
+    fetch('./poster.json')
+    .then((response) => response.json())
+    .then((json) => {
+        const data = json;
+        const allNum = data['poster'].length;
+        var bgNum = getRandomNumber(0,allNum);
+        const bg = document.querySelector('#background')
+        bg.style.backgroundImage = 'url('+data['poster'][bgNum]+')';    
+        // var i = 0;
+        // setInterval(() => {
+        //     if (i < allNum){
+        //         bg.style.backgroundImage = 'url('+data['poster'][i++]+')';    
+        //     }
+        // }, '5000');
     });
 
-    readTextFile("./list.json", function (text) {
-        data = JSON.parse(text);
-        let obj = data;
-        var urlnum = 0;
-        for (i in obj) {
-            var link = '';
-            for (l in obj[i]) {
-                link = link + '<div class="link-box"><a href="' + obj[i][l]["url"] + '"><div class="link-name">' + obj[i][l]["name"] + '</div><div class="link-explain">' + obj[i][l]["explain"] + '</div></a><div class="url-test" id="' + obj[i][l]["name"] + '" onclick="pingURL(this,\'' + obj[i][l]["url"] + '\')"><div class="url-B"></div>点我测试</div></div>';
+    fetch('./list.json')
+    .then((response) => response.json())
+    .then((json) => {
+        const obj = json;
+        const box = document.querySelector('#linkbox');
+        var group = '';
+        for(i in obj){
+            var linkBox = '';
+            for(l in obj[i]){
+                var link = obj[i][l]["url"];
+                var name = obj[i][l]["name"];
+                var explain = obj[i][l]["explain"];
+                linkBox = `
+                    ${linkBox}
+                    <div class="link-box">
+                        <a href="${link}">
+                            <div class="link-name">${name}</div>
+                            <div class="link-explain">${explain}</div>
+                        </a>
+                        <div class="url-test" id="${name}" onclick="pingURL(this,'${link}')">
+                            <div class="url-B"></div>点我测试
+                        </div>
+                    </div>
+                `;
             }
-            document.getElementById("linkbox").innerHTML += '<div class="partition"><div class="partition-name" id="' + i + '">- ' + i + ' -</div><div class="partition-box">' + link + '</div></div>'
-            
+            group = `
+                ${group}
+                <div class="partition">
+                    <div class="partition-name" id="${i}">- ${i} -</div>
+                    <div class="partition-box">${linkBox}</div>
+                </div>
+            `;
         }
-    });
-    
+        box.innerHTML = group;
+    })
+
 });
