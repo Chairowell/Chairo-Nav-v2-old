@@ -23,9 +23,9 @@
         "19": {"name": "dilidili","url": "https://dilidili.io/","explain": "兴趣使然的无名小站"},
         "20": {"name": "ACG.RW","url": "https://www.acgrw.net/","explain": "[R18] 在线日本动漫里番"},
         "21": {"name": "HentaiAnimeZone","url": "https://hentaianimezone.com/","explain": "[R18][英文] Hentai Anime"},
-        "22": {"name": "H次元","url": "https://dilidili.io/","explain": "[R18][需魔法] 汉化里番、漫画在线浏览"},
-        "23": {"name": "hanime","url": "https://dilidili.io/","explain": "[R18][需魔法][英文] Hentai Anime"},
-        "24": {"name": "Mucho Hentai","url": "https://dilidili.io/","explain": "[R18][需魔法][英文] Hentai Anime"}
+        "22": {"name": "H次元","url": "https://h-ciyuan.com/","explain": "[R18][需魔法] 汉化里番、漫画在线浏览"},
+        "23": {"name": "hanime","url": "https://hanime1.me/","explain": "[R18][需魔法][英文] Hentai Anime"},
+        "24": {"name": "Mucho Hentai","url": "https://muchohentai.com/home/","explain": "[R18][需魔法][英文] Hentai Anime"}
     },
     "SearchEngines": {
         "1": {"name": "AniList","url": "https://anilist.co/","explain": "[英文] ACGNM关联搜索，干净全面"},
@@ -99,7 +99,7 @@
         "11": {"name": "轻之文库","url": "https://www.linovel.net/","explain": "懂阅读更懂创作的轻小说平台"},
         "12": {"name": "轻之国度","url": "https://www.lightnovel.us/","explain": "专注分享的NACG社群"},
         "13": {"name": "哔哩轻小说","url": "https://www.linovelib.com/","explain": "日本动漫轻小说在线阅读"},
-        "14": {"name": "ESJ Zone","url": "https://www.esjzone.me/","explain": "轻小说下载"},
+        "14": {"name": "ESJ Zone","url": "https://www.esjzone.me/","explain": "轻小说在线阅读"},
         "15": {"name": "圖書館的無限迴廊","url": "https://epub.love/","explain": "轻小说EPUB格式下载"},
         "16": {"name": "真白萌","url": "https://masiro.me","explain": "会员制轻小说下载"},
         "17": {"name": "百合会","url": "https://www.yamibo.com/site/novel","explain": "会员制轻小说阅读"},
