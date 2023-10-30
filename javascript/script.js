@@ -115,6 +115,7 @@ function getMusicInfoFromBiu(sid) {
             const musicPlayer = document.getElementById("music");
             // 将音乐URL放入audio标签的src属性中
             musicPlayer.src = musicUrl;
+            musicPlayer.volume = 0.08;
             musicPlayer.addEventListener('loadeddata', function () {
                 const songInfoDiv = document.getElementById("songInfo");
                 songInfoDiv.innerHTML = "";
