@@ -1,6 +1,7 @@
 {
     "友链":{
-        "1": {"name": "呲哩呲哩","url":"http://www.cilicili.cc","explain":"cilicili 一个神奇的导航站"}
+        "1": {"name": "呲哩呲哩","url":"http://www.cilicili.cc","explain":"cilicili 一个神奇的导航站"},
+        "2": {"name": "饭团动漫","url": "https://acgfta.com/","explain": "(●'◡'●)"}
     },
     "Animation": {
         "1": {"name": "AGE动漫","url": "https://www.agemys.org/","explain": "急速，每日推荐100部番"},
