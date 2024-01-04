@@ -377,7 +377,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // }, '5000');
     });
 
-    fetch('./list.json')
+    fetch('https://www.chairo.cc/list.json')
     .then((response) => response.json())
     .then((json) => {
         const obj = json;
